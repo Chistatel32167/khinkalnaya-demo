@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#100b08"><title>Хинкальная — трёхмерная история вкуса</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:#100b08;color:#f1e6d5;font-family:Georgia,serif}body{overflow-x:hidden}#stage{position:fixed;inset:0;width:100%;height:100%;z-index:0}header{position:fixed;z-index:5;top:0;left:0;right:0;padding:22px 5vw;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #c9a36e44;background:#100b08a8;backdrop-filter:blur(12px)}.logo{font-size:20px;letter-spacing:.18em}.logo small{display:block;text-align:center;font:9px Arial;letter-spacing:.35em;color:#c9a36e;margin-top:6px}header a{color:#d9bd92;text-decoration:none;border:1px solid #c9a36e;padding:12px 16px;font:10px Arial;letter-spacing:.16em;text-transform:uppercase}.scene{height:110vh;min-height:720px;position:relative;z-index:1;display:flex;align-items:center;padding:0 9vw;pointer-events:none}.text{max-width:470px;text-shadow:0 3px 22px #000}.text.right{margin-left:auto;text-align:right}.tag{font:10px Arial;letter-spacing:.3em;text-transform:uppercase;color:#c9a36e}h1,h2{font-weight:400;font-size:clamp(54px,8vw,100px);line-height:.95;margin:25px 0}h1 em,h2 em{color:#d5ad77}p{font:14px/1.9 Arial,sans-serif;color:#d0c1ae;max-width:410px}.right p{margin-left:auto}.hint{font:10px Arial;letter-spacing:.22em;color:#c9a36e;margin-top:32px}.menu{position:relative;z-index:2;background:#eee3d2;color:#211712;padding:100px 8vw}.menu h2{font-size:clamp(46px,6vw,72px)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{padding:32px;border:1px solid #a77d4b;background:linear-gradient(145deg,#f6ecdc,#d9c4a7);min-height:190px}.card b{font-size:30px;font-weight:400}.card p{color:#62584d}.end{position:relative;z-index:2;padding:100px 8vw;text-align:center;background:#100b08}.end a{display:inline-block;margin-top:20px;padding:17px 24px;background:#c9a36e;color:#211712;text-decoration:none;font:10px Arial;letter-spacing:.15em}@media(max-width:650px){header{padding:16px 18px}.logo{font-size:15px}header a{font-size:8px;padding:10px}.scene{padding:0 24px;min-height:680px}.text.right{text-align:left;margin:0}.right p{margin-left:0}.cards{grid-template-columns:1fr}.menu{padding:75px 22px}h1,h2{font-size:56px}}
+</style>
+</head><body>
+<canvas id="stage"></canvas>
+<header><div class="logo">ХИНКАЛЬНАЯ<small>АДЛЕР · ГРУЗИНСКАЯ КУХНЯ</small></div><a href="#booking">Забронировать стол</a></header>
+<main>
+<section class="scene"><div class="text"><div class="tag">Грузинское гостеприимство · Адлер</div><h1>Вкус,<br>который<br><em>собирает</em></h1><p>Традиции большого стола, мастерство ручной лепки и удовольствие быть вместе.</p><div class="hint">ПРОКРУТИТЕ ВНИЗ — ИСТОРИЯ ПРОДОЛЖИТСЯ</div></div></section>
+<section class="scene"><div class="text right"><div class="tag">01 · Мастерство</div><h2>Форма,<br>созданная<br><em>вручную</em></h2><p>Объёмная форма хинкали, рельефные складки и тёплый свет. Камера плавно обходит блюдо, пока вы листаете страницу.</p></div></section>
+<section class="scene"><div class="text"><div class="tag">02 · Вкус</div><h2>Сохранить<br>сок внутри<br><em>совершенства</em></h2><p>Тонкое тесто, сочная начинка и ароматный бульон — внимание к деталям в каждом движении.</p></div></section>
+</main>
+<section class="menu"><div class="tag">Из нашей кухни</div><h2>Вкус как <em>искусство</em></h2><div class="cards"><article class="card"><div class="tag">Фирменное</div><b>Хинкали</b><p>Варианты начинок и цены добавим по подтверждённому меню.</p></article><article class="card"><div class="tag">Из печи</div><b>Хачапури</b><p>Категория выпечки. Состав и стоимость уточняются.</p></article><article class="card"><div class="tag">На огне</div><b>Блюда мангала</b><p>Позиции будут перенесены из меню ресторана.</p></article></div></section>
+<section class="end" id="booking"><div class="tag">Ваш столик ждёт вас</div><h2>До встречи<br><em>в Хинкальной</em></h2><p style="margin:0 auto">Адлер, улица Молокова, 42Б</p><a href="tel:+79180093906">ПОЗВОНИТЬ · +7 918 009-39-06</a></section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+<script>
+(()=>{const canvas=document.querySelector('#stage');if(!window.THREE){document.body.insertAdjacentHTML('beforeend','<p style="position:fixed;z-index:9;bottom:10px;left:20px">Не удалось загрузить трёхмерную графику. Проверьте интернет.</p>');return}
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;
+const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(36,innerWidth/innerHeight,.1,100);camera.position.set(0,.5,8);
+scene.add(new THREE.HemisphereLight(0xffe6c6,0x21100b,1.8));const key=new THREE.SpotLight(0xffd6a0,210,30,.65,.6);key.position.set(-4,6,5);scene.add(key);const rim=new THREE.PointLight(0x9a3c32,85,18);rim.position.set(4,1,-3);scene.add(rim);
+const food=new THREE.Group();scene.add(food);
+const N=160,M=120,P=16,verts=[],uv=[],idx=[];for(let j=0;j<=M;j++){let v=j/M;for(let i=0;i<=N;i++){let a=i/N*Math.PI*2,b=.04+v*(Math.PI-.08),g=Math.pow(Math.max(0,(v-.42)/.58),1.2),r=1.42*Math.sin(b)*(1-.62*Math.pow(Math.max(0,(v-.79)/.21),1.4))*(1+(.025+.12*g)*Math.cos(a*P+v*2));verts.push(Math.cos(a)*r,Math.cos(b)*1.5+.12*Math.pow(Math.max(0,(v-.8)/.2),2),Math.sin(a)*r);uv.push(i/N,v)}}for(let j=0;j<M;j++)for(let i=0;i<N;i++){let a=j*(N+1)+i,b=a+N+1;idx.push(a,a+1,b,a+1,b+1,b)}
+const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(verts,3));geo.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));geo.setIndex(idx);geo.computeVertexNormals();
+const dough=new THREE.MeshPhysicalMaterial({color:0xe5c99c,roughness:.48,clearcoat:.18,clearcoatRoughness:.4});const dumpling=new THREE.Mesh(geo,dough);dumpling.rotation.x=-.1;food.add(dumpling);
+const top=new THREE.Mesh(new THREE.SphereGeometry(.18,32,24),new THREE.MeshStandardMaterial({color:0xc8a174,roughness:.58}));top.scale.y=1.5;top.position.y=1.42;food.add(top);
+const plate=new THREE.Mesh(new THREE.CylinderGeometry(2.25,2.36,.15,96),new THREE.MeshStandardMaterial({color:0x211915,roughness:.24,metalness:.35}));plate.position.y=-1.48;food.add(plate);
+const ring=new THREE.Mesh(new THREE.TorusGeometry(2.2,.025,10,100),new THREE.MeshStandardMaterial({color:0xc39a62,metalness:.7,roughness:.25}));ring.rotation.x=Math.PI/2;ring.position.y=-1.39;food.add(ring);
+food.position.set(.8,-.1,0);
+let target=0;addEventListener('scroll',()=>{target=scrollY/Math.max(1,document.body.scrollHeight-innerHeight)}, {passive:true});
+function frame(t){food.rotation.y+=(target*5-food.rotation.y)*.025+Math.sin(t*.0003)*.0008;food.rotation.x=-.1+target*.12;let z=8-target*2.8;camera.position.z+=(z-camera.position.z)*.03;camera.position.x+=(.5-target*.9-camera.position.x)*.025;camera.lookAt(0,0,0);renderer.render(scene,camera);requestAnimationFrame(frame)}frame(0);
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,1.6))});
+})();
+</script></body></html>
